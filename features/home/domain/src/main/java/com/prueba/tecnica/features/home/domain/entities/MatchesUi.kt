@@ -5,8 +5,8 @@ data class MatchesUi(
 )
 
 data class ItemMatch(
-    val id: String,
-    val startTime: String,
+    val id: String = "",
+    val startTime: String= "",
     val firstTeam: FirstTeam,
     val secondTeam: SecondTeam,
     val market: Market,
@@ -14,7 +14,7 @@ data class ItemMatch(
 )
 
 data class FirstTeam(
-    val id: String,
+    val id: String ,
     val name: String,
     val shortName: String
 )
@@ -26,7 +26,7 @@ data class SecondTeam(
 )
 
 data class Market(
-    val type: String,
+    val type: String = "",
     val bets: Bets
 )
 

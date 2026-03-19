@@ -2,11 +2,11 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
-    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.prueba.tecnica.features.home.infrastructure"
+    namespace = "com.prueba.tecnica.core.database"
+
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -14,8 +14,7 @@ android {
     }
 
     defaultConfig {
-        minSdk = 21
-
+        minSdk = 24
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -29,34 +28,18 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    flavorDimensions.add("type")
-
-    productFlavors {
-        create("dev") {
-        }
-        create("qa") {
-        }
-        create("prod") {
-        }
-    }
 }
 
 dependencies {
-    implementation(project(":core:networking"))
-    implementation(project(":core:common"))
-    implementation(project(":core:domain"))
-    implementation(project(":core:database"))
-    implementation(project(":features:home:domain"))
-    //hilt
+    implementation(libs.room.lib)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-    implementation(libs.squareupRetrofit)
-    implementation(libs.squareupRetrofitGson)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 }
