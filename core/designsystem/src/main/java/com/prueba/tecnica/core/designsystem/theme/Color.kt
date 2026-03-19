@@ -24,3 +24,14 @@ val Green500: Color = Color(0xFF10B981)
 val Gray200: Color = Color(0xFFEEEBF4)
 val BLACK_100: Color = Color(0xFF121212)
 
+
+val ScreenBg = Color(0xFF05070B)
+val CardBg = Color(0xFF171A20)
+val CardBg2 = Color(0xFF1B1F26)
+val PrimaryGreen = Color(0xFF15E6A7)
+val SoftText = Color(0xFF8B93A1)
+val DividerColor = Color(0xFF2B313B)
+val YellowAccent = Color(0xFFFFC933)
+val CyanAccent = Color(0xFF00E5D4)
+val RedAccent = Color(0xFFFF5B6E)
+

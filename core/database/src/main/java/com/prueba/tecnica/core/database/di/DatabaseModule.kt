@@ -3,6 +3,7 @@ package com.prueba.tecnica.core.database.di
 import android.content.Context
 import androidx.room.Room
 import com.prueba.tecnica.core.database.AppDatabase
+import com.prueba.tecnica.core.database.dao.BetItemDao
 import com.prueba.tecnica.core.database.dao.MatchItemDao
 import dagger.Module
 import dagger.Provides
@@ -26,4 +27,7 @@ object DatabaseModule {
 
     @Provides
     fun provideMatchItemDao(db: AppDatabase): MatchItemDao = db.matchItemDao()
+
+    @Provides
+    fun provideBetItemDao(db: AppDatabase): BetItemDao = db.betItemDao()
 }

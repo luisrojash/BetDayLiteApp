@@ -1,5 +1,6 @@
 [versions]
 agp = "9.1.0"
+coilCompose = "2.7.0"
 coreKtx = "1.10.1"
 desugar_jdk_libs = "2.1.5"
 hiltCompiler = "2.59.2"
@@ -23,6 +24,7 @@ mockitoKotlin = "4.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltCompiler" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }

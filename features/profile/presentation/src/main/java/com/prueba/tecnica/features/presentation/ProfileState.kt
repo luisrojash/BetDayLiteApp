@@ -1,11 +1,13 @@
-package com.prueba.tecnica.features.home.presentation
+package com.prueba.tecnica.features.presentation
 
 import com.prueba.tecnica.core.common.presentation.ErrorState
-import com.prueba.tecnica.features.home.domain.entities.ItemMatch
+import com.prueba.tecnica.feature.domain.entities.BetUi
 
-data class HomeState(
+
+
+data class ProfileState(
     var errorState: ErrorState = ErrorState.None,
     val showConnectivity: Boolean = false,
     var showLoadingContent: Boolean = false,
-    var listMatches: List<ItemMatch> = listOf()
+    val listBets: List<BetUi> = listOf()
 )

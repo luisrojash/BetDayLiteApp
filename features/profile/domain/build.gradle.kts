@@ -1,10 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.prueba.tecnica.core.navigation"
+    namespace = "com.prueba.tecnica.feature.domain"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -32,6 +33,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
     flavorDimensions.add("type")
+
     productFlavors {
         create("dev") {
         }
@@ -40,15 +42,19 @@ android {
         create("prod") {
         }
     }
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
-    implementation(project(":features:home:presentation"))
-    implementation(project(":features:profile:presentation"))
-    implementation(libs.androidx.compose.foundation)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.navigation)
+    implementation(project(":core:common"))
+    implementation(project(":core:domain"))
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    // Test
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.androidx.mockito.inline)
+    implementation(libs.androidx.mockito.kotlin)
+    testImplementation(libs.kotlinx.coroutines.test)
 }

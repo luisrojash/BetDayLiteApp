@@ -1,8 +1,6 @@
 package com.prueba.tecnica.features.home.presentation
 
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import com.prueba.tecnica.core.common.presentation.BaseViewModel
 import com.prueba.tecnica.core.common.presentation.executeTask
 import com.prueba.tecnica.core.domain.Failure
