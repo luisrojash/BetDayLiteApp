@@ -20,7 +20,7 @@ object NetworkingModule {
 
 
     @Provides
-    fun provideBaseUrl(): String = "BuildConfig.BASE_URL"
+    fun provideBaseUrl(): String = "http://192.168.1.200:3003/v1/"
 
     @Provides
     @Singleton

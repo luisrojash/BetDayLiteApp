@@ -1,16 +1,25 @@
 package com.prueba.tecnica.lerp
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
+
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.prueba.tecnica.core.designsystem.bottombar.toUi
-import com.prueba.tecnica.core.navigation.BottomNavItem
+import com.prueba.tecnica.core.designsystem.theme.Green500
+import com.prueba.tecnica.core.designsystem.theme.Primary
 import com.prueba.tecnica.core.navigation.NavigationGraph
+import com.prueba.tecnica.core.navigation.bottombar.BottomNavItem
+import com.prueba.tecnica.core.navigation.bottombar.toUi
+
 
 @Composable
 fun MainScreen() {
@@ -26,7 +35,10 @@ fun MainScreen() {
 
     Scaffold(
         bottomBar = {
-            NavigationBar {
+            NavigationBar (
+                containerColor = Primary
+            ){
+
                 items.forEach { item ->
                     NavigationBarItem(
                         selected = currentRoute == item.route,
@@ -41,25 +53,28 @@ fun MainScreen() {
                         },
                         icon = {
                             Icon(
-                                imageVector = item.icon,
+                                imageVector = if (item.label == "Home") Icons.Default.Home else Icons.Default.Person,
                                 contentDescription = item.label
                             )
                         },
                         label = {
                             Text(text = item.label)
-                        }
+                        },
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = Color.Black,
+                            selectedTextColor = Green500,
+                            unselectedIconColor = Color.Gray,
+                            unselectedTextColor = Color.Gray,
+                            indicatorColor = Green500
+                        )
                     )
                 }
             }
         }
     ) { padding ->
-       /* NavigationGraph(
+        NavigationGraph(
             navController = navController,
-            padding = padding,
-            homeContent = { Text(text ="HOME SCREEN")},
-            profileContent = {  Text(text ="PROFILE SCREEN") }
-        )*/
-        NavigationGraph(navController, padding)
-
+            padding = padding
+        )
     }
 }

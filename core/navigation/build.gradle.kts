@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -46,10 +46,7 @@ android {
 }
 
 dependencies {
-    //implementation(libs.androidx.core.ktx)
-    //implementation(libs.androidx.appcompat)
-    //implementation(libs.material)
-    //implementation(libs.androidx.material3)
+    implementation(project(":features:home:presentation"))
     implementation(libs.androidx.compose.foundation)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.navigation)

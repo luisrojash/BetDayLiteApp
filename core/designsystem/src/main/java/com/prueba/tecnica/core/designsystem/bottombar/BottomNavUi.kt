@@ -4,8 +4,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.prueba.tecnica.core.navigation.BottomNavItem
 
+/*
 data class BottomNavUiItem(
     val route: String,
     val label: String,
@@ -25,4 +25,4 @@ fun BottomNavItem.toUi(): BottomNavUiItem {
             icon = Icons.Default.Person
         )
     }
-}
+}*/
