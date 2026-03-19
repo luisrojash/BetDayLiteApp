@@ -11,7 +11,7 @@ import com.prueba.tecnica.features.home.domain.entities.SecondTeam
 
 data class MatchesResponse(
     @SerializedName("matches")
-    val matches: List<MatchesDataResponse> = listOf()
+    var matches: List<MatchesDataResponse> = listOf()
 )
 
 

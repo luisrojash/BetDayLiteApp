@@ -1,12 +1,15 @@
 package com.prueba.tecnica.features.home.presentation
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.prueba.tecnica.core.common.presentation.BaseViewModel
 import com.prueba.tecnica.core.common.presentation.executeTask
 import com.prueba.tecnica.core.domain.Failure
 import com.prueba.tecnica.features.home.domain.entities.MatchesUi
 import com.prueba.tecnica.features.home.domain.usecase.MatchesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.time.OffsetDateTime
 import javax.inject.Inject
 
 @HiltViewModel
@@ -32,12 +35,16 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+
     fun onMatchesSuccess(matchUi: MatchesUi) {
         // hideLoadingButton()
         Log.i("HomeViewModel", "characterListUi : $matchUi")
+        val orderedList = matchUi.listMatch.sortedByDescending {
+            OffsetDateTime.parse(it.startTime)
+        }
         setUiState {
             copy(
-                listMatches = matchUi.listMatch
+                listMatches = orderedList
             )
         }
     }

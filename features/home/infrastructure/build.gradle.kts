@@ -56,7 +56,12 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.squareupRetrofit)
     implementation(libs.squareupRetrofitGson)
+    // Test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.androidx.mockito.inline)
+    implementation(libs.androidx.mockito.kotlin)
+    testImplementation(libs.kotlinx.coroutines.test)
 }

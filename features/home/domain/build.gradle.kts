@@ -37,7 +37,12 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+    // Test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.androidx.mockito.inline)
+    implementation(libs.androidx.mockito.kotlin)
+    testImplementation(libs.kotlinx.coroutines.test)
 }

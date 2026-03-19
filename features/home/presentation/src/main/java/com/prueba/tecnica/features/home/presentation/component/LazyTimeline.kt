@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.prueba.tecnica.core.designsystem.theme.BLACK_100
+import com.prueba.tecnica.core.designsystem.theme.Green500
 import com.prueba.tecnica.core.designsystem.theme.Primary
 import com.prueba.tecnica.core.designsystem.timeline.TimelineNode
 import com.prueba.tecnica.core.designsystem.timeline.defaults.CircleParametersDefaults
@@ -39,7 +40,7 @@ fun LazyTimeline(
             TimelineNode(
                 position = mapToTimelineNodePosition(index, state.listMatches.size),
                 circleParameters = CircleParametersDefaults.circleParameters(
-                    backgroundColor = getIconColor(matchesStage),
+                    backgroundColor = if (index == 0) Green500 else getIconColor(matchesStage),
                     stroke = getIconStrokeColor(matchesStage),
                     icon = GetIconTime(matchesStage)
                 ),

@@ -1,5 +1,6 @@
 package com.prueba.tecnica.features.home.infrastructure.repository
 
+import com.prueba.tecnica.core.networking.remote.ErrorResponse
 import com.prueba.tecnica.features.home.infrastructure.repository.response.MatchesResponse
 import retrofit2.Response
 import retrofit2.http.GET

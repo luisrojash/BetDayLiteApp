@@ -35,6 +35,7 @@ import com.prueba.tecnica.core.designsystem.timeline.models.LineParameters
 import com.prueba.tecnica.core.designsystem.timeline.models.StrokeParameters
 import com.prueba.tecnica.core.designsystem.timeline.models.TimelineNodePosition
 import com.prueba.tecnica.core.designsystem.R
+import com.prueba.tecnica.core.designsystem.components.text.TextBody1
 
 
 @Composable
