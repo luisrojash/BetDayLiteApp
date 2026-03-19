@@ -1,13 +1,11 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.prueba.tecnica.lerp"
-
+    namespace = "com.prueba.tecnica.core.common"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -15,12 +13,10 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.prueba.tecnica.lerp"
-        minSdk = 24
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = 21
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -32,14 +28,9 @@ android {
             )
         }
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    buildFeatures {
-        compose = true
     }
     flavorDimensions.add("type")
 
@@ -54,15 +45,13 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:designsystem"))
-    implementation(project(":core:navigation"))
+    implementation(project(":core:domain"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.material)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.compose.navigation)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)

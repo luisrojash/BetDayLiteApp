@@ -24,4 +24,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "BetDayLiteApp"
 include(":app")
- 
+include(":core")
+include(":core:networking")
+include(":core:common")
+include(":core:domain")
+include(":core:designsystem")
+include(":core:navigation")
