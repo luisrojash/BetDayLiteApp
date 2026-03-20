@@ -174,6 +174,13 @@ Las URLs base se configuran en `gradle.properties` como `URL_BASE_DEV`, `URL_BAS
 
 ---
 
+## FOTOS Y VIDEOS
+
+**| Rama DE LA BASE DE DATOS SQLITE ROOM |**
+
+![Home Screen](https://drive.google.com/uc?export=view&id=1a3l3IdeucmY62r7EpWizcJefFsY-IDjo)
+
+
 ## Consideraciones de diseño
 
 - **Infrastructure vs Data:** se optó por llamar `infrastructure` a la capa de datos para enfatizar que centraliza no solo el acceso a datos sino también la orquestación de fuentes remotas y locales.
