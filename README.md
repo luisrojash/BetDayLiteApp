@@ -182,7 +182,7 @@ Las URLs base se configuran en `gradle.properties` como `URL_BASE_DEV`, `URL_BAS
 
 ![Profile Screen](https://drive.google.com/uc?export=view&id=1_4_BrCM5bRlcFgRhbNnjTFd6ouM4wDmZ)
 
-![VIDEO APP](https://drive.google.com/uc?export=view&id=1Og8qQ8yyqTWmn6HBvWGc-eqizeCpGZWo)
+![Demo](https://drive.google.com/uc?export=view&id=1sELpysU7akuy580aHtiIJYj4aJM6OxTu)
 
 
 ## Consideraciones de diseño
