@@ -176,13 +176,17 @@ Las URLs base se configuran en `gradle.properties` como `URL_BASE_DEV`, `URL_BAS
 
 ## FOTOS Y VIDEOS
 
-**| Rama DE LA BASE DE DATOS SQLITE ROOM |**
+**| BASE DE DATOS SQLITE ROOM |**
 
 ![Home Screen](https://drive.google.com/uc?export=view&id=1a3l3IdeucmY62r7EpWizcJefFsY-IDjo)
 
+**|PANTALLA DE HOME |**
+
 ![Profile Screen](https://drive.google.com/uc?export=view&id=1_4_BrCM5bRlcFgRhbNnjTFd6ouM4wDmZ)
 
-![Demo](https://drive.google.com/uc?export=view&id=1sELpysU7akuy580aHtiIJYj4aJM6OxTu)
+**| GENERAL FOTOS Y VIDEOS |**
+
+| LINK  | [Versión estable](https://drive.google.com/drive/folders/1_N7QBgbndPbBjhh1Gp79ECOj_sVK3igl?usp=drive_link) |
 
 
 ## Consideraciones de diseño
