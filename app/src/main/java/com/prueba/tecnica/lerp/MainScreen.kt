@@ -33,10 +33,11 @@ fun MainScreen() {
 
     val navBackStackEntry = navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
+    val baseRoute = currentRoute?.substringBefore("/{")
     Log.i("MainScreen", "MainScreen: $currentRoute")
     Scaffold(
         bottomBar = {
-            if(currentRoute != "/register_screen_details_bets"){
+            if(baseRoute != "register_screen_details_bets"){
                 NavigationBar (
                     containerColor = Primary
                 ){

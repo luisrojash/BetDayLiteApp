@@ -2,6 +2,7 @@ package com.prueba.tecnica.core.networking.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.prueba.tecnica.core.networking.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +21,7 @@ object NetworkingModule {
 
 
     @Provides
-    fun provideBaseUrl(): String = "http://192.168.1.200:3003/v1/"
+    fun provideBaseUrl(): String = BuildConfig.BASE_URL
 
     @Provides
     @Singleton

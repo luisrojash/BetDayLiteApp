@@ -4,6 +4,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
@@ -13,6 +18,7 @@ fun OddsRow(
     drawOdd: String,
     awayOdd: String
 ) {
+    var selected by rememberSaveable { mutableStateOf<String?>(null) }
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(10.dp)
@@ -20,19 +26,25 @@ fun OddsRow(
         OddItem(
             modifier = Modifier.weight(1f),
             label = "1",
-            value = homeOdd
+            value = homeOdd,
+            isSelected = selected == "1",
+            onClick = { selected = "1" }
         )
 
         OddItem(
             modifier = Modifier.weight(1f),
             label = "X",
-            value = drawOdd
+            value = drawOdd,
+            isSelected = selected == "X",
+            onClick = { selected = "X" }
         )
 
         OddItem(
             modifier = Modifier.weight(1f),
             label = "2",
-            value = awayOdd
+            value = awayOdd,
+            isSelected = selected == "2",
+            onClick = { selected = "2" }
         )
     }
 }

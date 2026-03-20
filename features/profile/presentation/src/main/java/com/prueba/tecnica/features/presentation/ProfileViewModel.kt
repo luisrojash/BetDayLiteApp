@@ -44,7 +44,7 @@ class ProfileViewModel @Inject constructor(
     }
 
     private fun initService() {
-        // showLoadingButton()
+         showLoadingButton()
         executeTask(
             onSuccess = ::onBetSuccess,
             onFailure = ::onMatchesError
@@ -54,12 +54,11 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun onBetSuccess(betList: BetListUi) {
-        // hideLoadingButton()
         initServiceMatch(betList)
     }
 
     private fun initServiceMatch(betList: BetListUi) {
-        // showLoadingButton()
+         showLoadingButton()
         executeTask(
             onSuccess = { response ->
                 onMatchesSuccess(
@@ -77,7 +76,7 @@ class ProfileViewModel @Inject constructor(
         matchUi: MatchesUi,
         betList: BetListUi
     ) {
-        // hideLoadingButton()
+         hideLoadingButton()
         Log.i("HomeViewModel", "characterListUi : $matchUi")
         val matchMap = matchUi.listMatch.associateBy { it.id }
 
@@ -99,8 +98,23 @@ class ProfileViewModel @Inject constructor(
     }
 
     private fun onMatchesError(failure: Failure) {
-        //hideLoadingButton()
+        hideLoadingButton()
         Log.i("CharacterViewModel", "$failure")
+    }
+    private fun showLoadingButton() {
+        setUiState {
+            copy(
+                showLoadingContent = true
+            )
+        }
+    }
+
+    private fun hideLoadingButton() {
+        setUiState {
+            copy(
+                showLoadingContent = false
+            )
+        }
     }
 
 

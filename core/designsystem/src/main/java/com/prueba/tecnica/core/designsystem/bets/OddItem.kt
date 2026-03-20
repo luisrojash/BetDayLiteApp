@@ -2,6 +2,7 @@ package com.prueba.tecnica.core.designsystem.bets
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,22 +18,29 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.prueba.tecnica.core.designsystem.theme.Green500
 
 @Composable
 fun OddItem(
     modifier: Modifier = Modifier,
     label: String,
-    value: String
+    value: String,
+    isSelected: Boolean,
+    onClick: () -> Unit
 ) {
+    val backgroundColor = if (isSelected) Green500 else Color(0xFF2A2D35)
+    val borderColor = if (isSelected) Green500 else Color(0xFF343844)
+
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(14.dp))
-            .background(Color(0xFF2A2D35))
+            .background(backgroundColor)
             .border(
                 width = 1.dp,
-                color = Color(0xFF343844),
+                color = borderColor,
                 shape = RoundedCornerShape(14.dp)
             )
+            .clickable { onClick() }
             .padding(vertical = 12.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -41,7 +49,7 @@ fun OddItem(
         ) {
             Text(
                 text = label,
-                color = Color(0xFF8C9099),
+                color = if (isSelected) Color.White else Color(0xFF8C9099),
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Medium
             )

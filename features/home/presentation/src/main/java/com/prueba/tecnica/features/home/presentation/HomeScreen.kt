@@ -30,9 +30,7 @@ fun HomeScreen() {
         viewModel.navigation.collect {
             when (it) {
                 //Solo para ejecutar Acciones
-                is HomeNavigate.OnBackPressed -> {
-
-                }
+                is HomeNavigate.OnBackPressed -> {}
             }
         }
     }

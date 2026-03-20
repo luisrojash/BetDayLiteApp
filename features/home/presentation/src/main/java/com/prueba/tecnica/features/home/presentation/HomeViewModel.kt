@@ -24,7 +24,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun initService() {
-        // showLoadingButton()
+         showLoadingButton()
         executeTask(
             onSuccess = ::onMatchesSuccess,
             onFailure = ::onMatchesError
@@ -35,7 +35,7 @@ class HomeViewModel @Inject constructor(
 
 
     fun onMatchesSuccess(matchUi: MatchesUi) {
-        // hideLoadingButton()
+        hideLoadingButton()
         Log.i("HomeViewModel", "characterListUi : $matchUi")
         val orderedList = matchUi.listMatch.sortedByDescending {
             OffsetDateTime.parse(it.startTime)
@@ -48,8 +48,23 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun onMatchesError(failure: Failure) {
-        //hideLoadingButton()
+        hideLoadingButton()
         Log.i("CharacterViewModel", "$failure")
     }
 
+    private fun showLoadingButton() {
+        setUiState {
+            copy(
+                showLoadingContent = true
+            )
+        }
+    }
+
+    private fun hideLoadingButton() {
+        setUiState {
+            copy(
+                showLoadingContent = false
+            )
+        }
+    }
 }
