@@ -1,340 +1,181 @@
-# 🚀 BetDay Lite - Android App
+# BetDay Lite — Android App
 
-> Aplicación moderna de apuestas deportivas desarrollada en Android utilizando **Kotlin + Jetpack Compose**, aplicando **Clean Architecture**, **MVI**, pruebas unitarias y buenas prácticas de desarrollo.
-
----
-
-## 📌 Descripción general
-
-Desarrollé **BetDay Lite**, una aplicación Android enfocada en la visualización de eventos deportivos y apuestas simuladas, aplicando arquitectura moderna, buenas prácticas y un enfoque escalable.
-
-La app permite:
-
-- 🏟️ Visualizar eventos deportivos organizados por hora  
-- 🎯 Realizar apuestas simuladas en mercado **1X2**  
-- 👤 Gestionar apuestas realizadas desde la sección de perfil  
-- 📄 Visualizar el detalle completo de una apuesta seleccionada  
-
-Durante el desarrollo prioricé:
-
-- 🧠 Arquitectura limpia y mantenible  
-- 🧪 Testing estructurado  
-- 🎨 Experiencia de usuario fluida  
-- 🔄 Manejo de estado predecible  
-- 📡 Consumo de servicios desacoplado  
-- 💾 Persistencia local  
+Aplicación Android de apuestas deportivas simuladas desarrollada con **Kotlin + Jetpack Compose**, aplicando Clean Architecture, MVI y modularización por features.
 
 ---
 
-## 🏗️ Arquitectura implementada
+## Descripción
 
-Implementé una arquitectura moderna basada en:
+**BetDay Lite** permite:
 
-- 🧩 **Clean Architecture**
-- 🔄 **MVI (Model - View - Intent)**
-- 🔁 **Unidirectional Data Flow**
-- 📦 **Modularización por features**
+- Visualizar eventos deportivos organizados por fecha y hora
+- Realizar apuestas simuladas en mercado **1X2**
+- Consultar el historial de apuestas desde la sección de perfil
+- Ver el detalle completo de una apuesta seleccionada
 
-### 🧱 Capas
-presentation → domain → infrastructure
-
-> ⚠️ En mi implementación, la capa que normalmente se denomina `data` la estructuré como **Infrastructure**, ya que centraliza:
-- acceso a datos  
-- repositorios  
-- consumo de servicios  
-- persistencia local  
-- mapeos  
-
-### ✅ Principios aplicados
-
-- 🧠 SOLID  
-- 🎯 Single Source of Truth  
-- 🧩 Separation of Concerns  
-- 🪶 Bajo acoplamiento  
-- ♻️ Reutilización de componentes  
+La app consume una API REST mockeada con **Mockoon** y persiste los datos localmente con **Room**.
 
 ---
 
-## 🔄 Patrón MVI
+## Arquitectura
 
-Implementé el patrón **MVI** para asegurar un flujo de datos predecible y una UI reactiva.
+Implementa **Clean Architecture** con tres capas bien definidas:
 
-### 🔁 Flujo
+```
+Presentation → Domain → Infrastructure
+```
 
-- 👉 **Intent** → acciones del usuario  
-- 🧾 **State** → estado único de la UI  
-- ⚙️ **Reducer** → transformación del estado  
-- 🧠 **ViewModel** → orquestación  
+> La capa `Infrastructure` cumple el rol que normalmente ocupa `data`, centralizando repositorios, data sources, mappers y acceso a la base de datos.
 
-### 🌟 Beneficios
+### Patrón MVI
 
-- Estado centralizado  
-- UI consistente  
-- Fácil debugging  
-- Escalabilidad  
+El flujo de la UI es unidireccional:
 
----
+```
+Intent (acción del usuario)
+  → ViewModel (orquestación)
+    → Reducer (transformación de estado)
+      → State (UI reactiva via StateFlow)
+```
 
-## 🛠️ Tecnologías y herramientas
+### Principios aplicados
 
-### 👨‍💻 Core
-- Kotlin  
-- Jetpack Compose  
-- Coroutines  
-- Flow / StateFlow  
-
-### 🧠 Arquitectura
-- Clean Architecture  
-- MVI  
-- ViewModel  
-- UseCases  
-
-### 🏢 Infrastructure
-- Retrofit  
-- OkHttp  
-- Room  
-- Mappers (DTO → Domain → UI / Entity)  
-
-### 🌐 Networking
-- Interceptores personalizados  
-- Chucker  
-- Manejo de errores centralizado  
-- Servicios mockeados con **Mockoon**  
-
-### 🧪 Testing
-- JUnit  
-- Mockito  
-- Patrón AAA (Arrange - Act - Assert)  
-
-### ⚙️ Ambientes
-- 🔧 Dev  
-- 🧪 QA  
-- 🚀 UAT  
+- SOLID
+- Single Source of Truth
+- Separation of Concerns
+- Bajo acoplamiento entre capas
 
 ---
 
-## 🌐 Servicios mockeados
+## Módulos
 
-Para desacoplar completamente el desarrollo del backend, utilicé **Mockoon** para simular servicios HTTP.
+```
+app/
+core/
+  ├── common/         # BaseViewModel, NetworkMonitor, dispatchers
+  ├── database/       # Room: AppDatabase, DAOs, entidades
+  ├── designsystem/   # Componentes Compose, Theme, Typography
+  ├── domain/         # Result, Failure (tipos base)
+  ├── navigation/     # NavGraph, BottomNavigation
+  └── networking/     # Retrofit, OkHttp, manejo de errores
 
-### 📍 Implementación
-
-- Mock de endpoints de eventos y apuestas  
-- Simulación de respuestas controladas  
-- Validación de contratos JSON  
-- Entorno local independiente del backend  
-
-### 💡 Beneficios
-
-- 🚀 Mayor velocidad de desarrollo  
-- 🔒 Control de escenarios  
-- 🧪 Pruebas estables  
-- 🧩 Independencia del backend  
-
----
-
-## 📡 Networking
-
-Implementé la capa de red con **Retrofit + OkHttp**, incorporando herramientas de debugging.
-
-### 🔍 Incluye
-
-- Consumo de APIs  
-- Interceptores personalizados  
-- Logging HTTP  
-- Integración con **Chucker**  
-- Manejo desacoplado de errores  
-- Integración con Mockoon  
+features/
+  ├── home/
+  │   ├── domain/          # MatchesUseCase, MatchesRepository (interfaz), entidades
+  │   ├── infrastructure/  # MatchesRepositoryImpl, MatchesService, Mappers
+  │   └── presentation/    # HomeScreen, HomeViewModel, HomeState, HomeIntent
+  ├── profile/
+  │   ├── domain/          # BetUseCase, BetRepository (interfaz), BetUi, BetStatus
+  │   ├── infrastructure/  # BetRepositoryImpl, BetService, Mappers
+  │   └── presentation/    # ProfileScreen, ProfileViewModel, ProfileState
+  └── detailbets/
+      └── presentation/    # DetailBetsScreen, componentes de detalle
+```
 
 ---
 
-## ✨ Funcionalidades
+## Stack tecnológico
 
-### 🏠 Home
-
-- Lista de eventos ordenados por fecha/hora  
-- Visualización de:
-  - Liga  
-  - Equipos  
-  - Cuotas (1X2)  
-
-- Interacción:
-  - Selección de apuesta  
-  - Feedback visual  
-  - Estado reactivo con MVI  
-
----
-
-### 👤 Perfil
-
-- Lista de apuestas realizadas  
-- Estados:
-  - 🟡 PENDING  
-  - 🟢 WON  
-  - 🔴 LOST  
-
-- Incluye:
-  - Empty state  
-  - Navegación al detalle  
+| Categoría | Tecnologías |
+|-----------|-------------|
+| Lenguaje & UI | Kotlin 2.3.20, Jetpack Compose, Material3 |
+| Arquitectura | Clean Architecture, MVI, ViewModel, UseCases |
+| Async | Coroutines, Flow, StateFlow |
+| DI | Hilt 2.59.2 |
+| Networking | Retrofit 3, OkHttp 4, Chucker, Mockoon |
+| Persistencia | Room 2.8.4 |
+| Imágenes | Coil 2.7.0 |
+| Testing | JUnit 4, Mockito, Mockito-Kotlin, Coroutines Test |
+| Build | Gradle KTS, Version Catalog (libs.versions.toml) |
 
 ---
 
-### 📄 Detalle
+## Funcionalidades
 
-- Información completa del evento  
-- Selección realizada  
-- Cuota  
-- Estado  
+### Home
 
----
+- Lista de eventos deportivos con selector de día
+- Visualización de equipos, liga y cuotas (1 / X / 2)
+- Timeline visual de partidos por estado (próximo, en vivo, finalizado)
+- Selección de apuesta con feedback visual reactivo
 
-## 💾 Persistencia
+### Perfil
 
-Utilicé **Room** para almacenar localmente las apuestas.
+- Historial de apuestas guardadas localmente
+- Estados: `PENDING` / `WON` / `LOST`
+- Empty state cuando no hay apuestas registradas
+- Navegación al detalle de cada apuesta
 
-### Implementé
+### Detalle
 
-- Guardado de apuestas  
-- Lectura desde base de datos  
-- Consulta para perfil y detalle  
-
-> ⚠️ No implementé sincronización remota, ya que el enfoque estuvo en arquitectura, estado y persistencia local.
-
----
-
-## 🎨 UI / UX
-
-Diseñé la UI utilizando Jetpack Compose priorizando:
-
-- 🎨 Diseño limpio  
-- 🧩 Componentes reutilizables  
-- ✨ Feedback visual  
-- 📱 Experiencia fluida  
-- 🔄 Integración con MVI  
+- Información completa del evento (liga, equipos, marcador)
+- Opción seleccionada y cuota aplicada
+- Indicador de partido en vivo
+- Estado actual de la apuesta
 
 ---
 
-## 🧪 Testing
+## Testing
 
-Implementé pruebas unitarias utilizando el patrón:
+Pruebas unitarias con el patrón **AAA (Arrange — Act — Assert)**.
 
-### AAA (Arrange - Act - Assert)
+**Clases cubiertas:**
 
-### 📚 Capas cubiertas
-
-- Domain  
-- Infrastructure  
-
-### ✅ Enfoque
-
-- Validación de lógica de negocio  
-- Uso de mocks  
-- Pruebas aisladas  
-- Verificación clara de resultados  
+| Feature | Capa | Clase |
+|---------|------|-------|
+| Home | Domain | `MatchesUseCaseTest` |
+| Home | Infrastructure | `MatchesDataSourceImplTest` |
+| Profile | Domain | `BetUseCaseTest` |
+| Profile | Infrastructure | `BetDataSourceImplTest` |
 
 ---
 
-## ✅ Clases de test
+## Ambientes
 
-### 🏠 HOME
+El proyecto define tres flavors de Gradle:
 
-#### 🧠 Domain
-`dominio/usecase/MatchesUseCaseTest.kt`
+| Flavor | Descripción |
+|--------|-------------|
+| `dev` | Desarrollo local con Mockoon |
+| `qa` | Integración y pruebas |
+| `prod` | Producción |
 
-- Validación de obtención de eventos  
-- Verificación de lógica del caso de uso  
-- Interacción con repositorio  
-
-#### 🏢 Infrastructure
-`infraestructura/repository/MatchesDataSourceImplTest.kt`
-
-- Consumo de datos mockeados  
-- Transformación de datos  
-- Validación del data source  
+Las URLs base se configuran en `gradle.properties` como `URL_BASE_DEV`, `URL_BASE_QA` y `URL_BASE_PROD`.
 
 ---
 
-### 👤 PERFIL
+## Configuración local
 
-#### 🧠 Domain
-`dominio/usecase/BetUseCaseTest.kt`
+### Requisitos
 
-- Validación de recuperación de apuestas  
-- Lógica de negocio  
-- Interacción con Infrastructure  
+- Android Studio Ladybug o superior
+- JDK 11+
+- Mockoon (para desarrollo local)
 
-#### 🏢 Infrastructure
-`infraestructura/repository/BetDataSourceImplTest.kt`
+### Pasos
 
-- Acceso a datos  
-- Transformación de información  
-- Validación del repositorio  
-
----
-
-## 🌿 Estrategia de ramas
-
-Durante el desarrollo utilicé una estrategia basada en ramas por feature.
-
-### 📂 Principales
-
-- `master` → versión estable  
-- `develop` → integración  
-
-### 🚀 Features
-
-- `feature/config_application`  
-- `feature/detailsbets`  
-- `feature/home`  
-- `feature/home_offline`  
-- `feature/profile`  
-- `feature/test_home`  
-
-### 🛠️ Fixes
-
-- `fixes/designsystem`  
-
-### 📦 Release
-
-- `releaseV1`  
-
-### 🎯 Enfoque
-
-- Desarrollo por funcionalidades  
-- Integración controlada  
-- Preparación de releases  
+1. Clonar el repositorio
+2. Importar en Android Studio
+3. Iniciar Mockoon con los endpoints de eventos y apuestas
+4. Verificar que `URL_BASE_DEV` en `gradle.properties` apunta al servidor local
+5. Ejecutar con el flavor `dev`
 
 ---
 
-## 🚀 Diferenciales
+## Estrategia de ramas
 
-- 🔥 MVI implementado correctamente  
-- 🔥 Clean Architecture  
-- 🔥 Infrastructure como capa de datos  
-- 🔥 Testing con AAA  
-- 🔥 Mockoon para servicios  
-- 🔥 Chucker para debugging  
-- 🔥 Multi-environment  
-- 🔥 Modularización  
-- 🔥 Manejo de estado con Flow  
+| Rama | Propósito |
+|------|-----------|
+| `master` | Versión estable |
+| `develop` | Integración de features |
+| `feature/*` | Desarrollo por funcionalidad |
+| `fixes/*` | Correcciones puntuales |
+| `releaseV1` | Preparación de release |
 
 ---
 
-## 📸 Screenshots
+## Consideraciones de diseño
 
-- screenshots/home.png  
-- screenshots/profile.png  
-- screenshots/detail.png  
-
----
-
-## 🎥 Demo
-
-[Ver video demo](https://tu-link-aqui.com)
-
----
-
-## 📦 Instalación
-
-```bash
-git clone https://github.com/tu-repo.git
+- **Infrastructure vs Data:** se optó por llamar `infrastructure` a la capa de datos para enfatizar que centraliza no solo el acceso a datos sino también la orquestación de fuentes remotas y locales.
+- **Sin sincronización remota:** el enfoque estuvo en la arquitectura, el manejo de estado y la persistencia local. Las apuestas se guardan únicamente en Room.
+- **`usesCleartextTraffic="true"`:** habilitado para permitir conexión HTTP al servidor Mockoon en desarrollo local.
