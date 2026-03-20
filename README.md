@@ -180,6 +180,10 @@ Las URLs base se configuran en `gradle.properties` como `URL_BASE_DEV`, `URL_BAS
 
 ![Home Screen](https://drive.google.com/uc?export=view&id=1a3l3IdeucmY62r7EpWizcJefFsY-IDjo)
 
+![Profile Screen](https://drive.google.com/uc?export=view&id=1_4_BrCM5bRlcFgRhbNnjTFd6ouM4wDmZ)
+
+![VIDEO APP](https://drive.google.com/uc?export=view&id=1Og8qQ8yyqTWmn6HBvWGc-eqizeCpGZWo)
+
 
 ## Consideraciones de diseño
 
