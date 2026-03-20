@@ -7,7 +7,7 @@ import retrofit2.http.GET
 
 
 interface MatchesService {
-    @GET("matches")
+    @GET("b9fb1498-3fe7-479b-9ba9-1f26f2d8ad60")
     suspend fun getAllMatches(
     ): Response<MatchesResponse>
 }

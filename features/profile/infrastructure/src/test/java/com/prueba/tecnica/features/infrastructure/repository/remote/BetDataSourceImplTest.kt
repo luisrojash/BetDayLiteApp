@@ -40,7 +40,7 @@ class BetDataSourceImplTest {
     }
 
     @Test
-    fun `getListMatch should return success when API call is successful`() = runTest {
+    fun `getListBet should return success when API call is successful`() = runTest {
         // Respuesta esperada de la API
         val betList = listOf(
             BetItemResponse(

@@ -47,9 +47,7 @@ fun ProfileScreen(
         viewModel.navigation.collect {
             when (it) {
                 //Solo para ejecutar Acciones
-                is ProfileNavigate.OnBackPressed -> {
-
-                }
+                is ProfileNavigate.OnBackPressed -> {}
 
                 is ProfileNavigate.NavigateDetailsBets -> {
                     onNavigateDetailBets(
