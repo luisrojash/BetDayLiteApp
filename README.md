@@ -186,11 +186,11 @@ Las URLs base se configuran en `gradle.properties` como `URL_BASE_DEV`, `URL_BAS
 
 **| GENERAL FOTOS Y VIDEOS |**
 
-| LINK  | [Versión estable](https://drive.google.com/drive/folders/1_N7QBgbndPbBjhh1Gp79ECOj_sVK3igl?usp=drive_link) |
+| LINK  | [APK](https://drive.google.com/file/d/15fCRA0DC8DlbWlm9dNBadkMi2ywlHGc8/view?usp=sharing) |
 
 **| APK DE LA APLICACIÓN |**
 
-| LINK  | [APK][(https://drive.google.com/drive/folders/1_N7QBgbndPbBjhh1Gp79ECOj_sVK3igl?usp=drive_link](https://drive.google.com/file/d/15fCRA0DC8DlbWlm9dNBadkMi2ywlHGc8/view?usp=sharing) |
+| LINK  | [APK] (https://drive.google.com/drive/folders/1_N7QBgbndPbBjhh1Gp79ECOj_sVK3igl?usp=drive_link](https://drive.google.com/file/d/15fCRA0DC8DlbWlm9dNBadkMi2ywlHGc8/view?usp=sharing) |
 
 
 ## Consideraciones de diseño
