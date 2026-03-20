@@ -3,6 +3,7 @@ package com.prueba.tecnica.features.presentation
 import android.util.Log
 import com.prueba.tecnica.core.common.presentation.BaseViewModel
 import com.prueba.tecnica.core.common.presentation.executeTask
+import com.prueba.tecnica.core.common.utils.Utils
 import com.prueba.tecnica.core.domain.Failure
 import com.prueba.tecnica.feature.domain.entities.BetListUi
 import com.prueba.tecnica.feature.domain.usecase.BetUseCase
@@ -20,7 +21,23 @@ class ProfileViewModel @Inject constructor(
 
     override fun createInitialState() = ProfileState()
 
-    override suspend fun handleIntent(intent: ProfileIntent) {}
+
+    override suspend fun handleIntent(intent: ProfileIntent) {
+        when (intent) {
+            is ProfileIntent.OnClickedCardProfile -> {
+                goNavigation(
+                    ProfileNavigate.NavigateDetailsBets(
+                        leagueName = intent.betUi.firstTeam,
+                        date = Utils.formatDate("2026-02-12T19:25:00-05:00"),
+                        firstTeam = intent.betUi.firstTeam,
+                        secondTeam = intent.betUi.secondTeam,
+                        share = intent.betUi.oddText,
+                        speak = intent.betUi.amountValue
+                    )
+                )
+            }
+        }
+    }
 
     init {
         initService()
@@ -67,6 +84,8 @@ class ProfileViewModel @Inject constructor(
         val result = betList.bets.map { bet ->
             val match = matchMap[bet.matchId]
             bet.copy(
+                firstTeam = match?.firstTeam?.name.orEmpty(),
+                secondTeam = match?.secondTeam?.name.orEmpty(),
                 sportLeague = match?.firstTeam?.name ?: "",
                 match = match?.let { "${match.firstTeam.name} vs ${match.secondTeam.name}" } ?: ""
             )

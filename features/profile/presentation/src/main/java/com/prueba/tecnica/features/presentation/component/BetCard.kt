@@ -34,7 +34,8 @@ import com.prueba.tecnica.feature.domain.entities.BetUi
 
 @Composable
 fun BetCard(
-    bet: BetUi
+    bet: BetUi,
+    onClickedBetCard: (BetUi) -> Unit
 ) {
     val accentColor = when (bet.status) {
         BetStatus.PENDING -> YellowAccent
@@ -55,6 +56,7 @@ fun BetCard(
     }
 
     Card(
+        onClick = { onClickedBetCard(bet) },
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(18.dp),
         colors = CardDefaults.cardColors(containerColor = CardBg2),

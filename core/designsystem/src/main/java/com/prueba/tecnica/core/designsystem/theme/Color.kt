@@ -35,3 +35,12 @@ val YellowAccent = Color(0xFFFFC933)
 val CyanAccent = Color(0xFF00E5D4)
 val RedAccent = Color(0xFFFF5B6E)
 
+
+ val BorderColor = Color(0xFFE9EBF0)
+ val PrimaryText = Color(0xFF1F2937)
+ val SecondaryText = Color(0xFF9CA3AF)
+ val SoftBlue = Color(0xFF2563EB)
+ val SoftGreen = Color(0xFF16A34A)
+ val LiveBg = Color(0xFFFDECEC)
+ val LiveRed = Color(0xFFEF4444)
+ val StatBg = Color(0xFFF3F4F6)

@@ -1,5 +1,6 @@
 package com.prueba.tecnica.lerp
 
+import android.util.Log
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
@@ -32,42 +33,44 @@ fun MainScreen() {
 
     val navBackStackEntry = navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
-
+    Log.i("MainScreen", "MainScreen: $currentRoute")
     Scaffold(
         bottomBar = {
-            NavigationBar (
-                containerColor = Primary
-            ){
+            if(currentRoute != "/register_screen_details_bets"){
+                NavigationBar (
+                    containerColor = Primary
+                ){
 
-                items.forEach { item ->
-                    NavigationBarItem(
-                        selected = currentRoute == item.route,
-                        onClick = {
-                            navController.navigate(item.route) {
-                                popUpTo(BottomNavItem.Home.route) {
-                                    saveState = true
+                    items.forEach { item ->
+                        NavigationBarItem(
+                            selected = currentRoute == item.route,
+                            onClick = {
+                                navController.navigate(item.route) {
+                                    popUpTo(BottomNavItem.Home.route) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
                                 }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        },
-                        icon = {
-                            Icon(
-                                imageVector = if (item.label == "Home") Icons.Default.Home else Icons.Default.Person,
-                                contentDescription = item.label
+                            },
+                            icon = {
+                                Icon(
+                                    imageVector = if (item.label == "Home") Icons.Default.Home else Icons.Default.Person,
+                                    contentDescription = item.label
+                                )
+                            },
+                            label = {
+                                Text(text = item.label)
+                            },
+                            colors = NavigationBarItemDefaults.colors(
+                                selectedIconColor = Color.Black,
+                                selectedTextColor = Green500,
+                                unselectedIconColor = Color.Gray,
+                                unselectedTextColor = Color.Gray,
+                                indicatorColor = Green500
                             )
-                        },
-                        label = {
-                            Text(text = item.label)
-                        },
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Color.Black,
-                            selectedTextColor = Green500,
-                            unselectedIconColor = Color.Gray,
-                            unselectedTextColor = Color.Gray,
-                            indicatorColor = Green500
                         )
-                    )
+                    }
                 }
             }
         }

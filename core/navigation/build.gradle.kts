@@ -48,6 +48,7 @@ android {
 dependencies {
     implementation(project(":features:home:presentation"))
     implementation(project(":features:profile:presentation"))
+    implementation(project(":features:detailbets:presentation"))
     implementation(libs.androidx.compose.foundation)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.navigation)

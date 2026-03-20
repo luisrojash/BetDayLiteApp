@@ -12,5 +12,7 @@ data class BetUi(
     val oddText: String,
     val amountLabel: String,
     val amountValue: String,
-    val status: BetStatus
+    val status: BetStatus,
+    var firstTeam:String = "",
+    var secondTeam:String = ""
 )

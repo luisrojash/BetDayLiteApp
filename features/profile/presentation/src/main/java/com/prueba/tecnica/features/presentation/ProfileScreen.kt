@@ -24,14 +24,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.prueba.tecnica.core.common.presentation.ErrorState
+import com.prueba.tecnica.core.common.utils.Utils
 import com.prueba.tecnica.core.designsystem.BaseScreen
 import com.prueba.tecnica.core.designsystem.theme.Primary
 import com.prueba.tecnica.core.designsystem.theme.PrimaryGreen
+import com.prueba.tecnica.feature.domain.entities.BetUi
 import com.prueba.tecnica.features.presentation.component.BetCard
 import com.prueba.tecnica.features.presentation.component.UserHeaderCard
 
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(
+    onNavigateDetailBets: (
+        String, String, String, String, String, String
+    ) -> Unit
+) {
 
     val viewModel = hiltViewModel<ProfileViewModel>()
     val state = viewModel.uiState.collectAsState().value
@@ -44,6 +50,19 @@ fun ProfileScreen() {
                 is ProfileNavigate.OnBackPressed -> {
 
                 }
+
+                is ProfileNavigate.NavigateDetailsBets -> {
+                    onNavigateDetailBets(
+                        it.leagueName,
+                        it.date,
+                        it.firstTeam,
+                        it.secondTeam,
+                        it.share,
+                        it.speak
+                    )
+                }
+
+
             }
         }
     }
@@ -55,8 +74,8 @@ fun ProfileScreen() {
     })
     ProfileContentScreen(
         state = state,
-        onIntent = {
-            viewModel.setIntent(it)
+        onNavigateDetailBets = {
+            viewModel.setIntent(ProfileIntent.OnClickedCardProfile(betUi = it))
         }
     )
 }
@@ -65,7 +84,7 @@ fun ProfileScreen() {
 @Composable
 fun ProfileContentScreen(
     state: ProfileState,
-    onIntent: (ProfileIntent) -> Unit
+    onNavigateDetailBets: (BetUi) -> Unit
 ) {
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -114,7 +133,12 @@ fun ProfileContentScreen(
             }
 
             items(state.listBets) { bet ->
-                BetCard(bet = bet)
+                BetCard(
+                    bet = bet,
+                    onClickedBetCard = {
+                        onNavigateDetailBets(bet)
+                    }
+                )
             }
 
             item { Spacer(modifier = Modifier.height(12.dp)) }

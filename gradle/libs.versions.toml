@@ -21,6 +21,7 @@ roomVersion = "2.8.4"
 mockitoInline = "4.0.0"
 kotlinxCoroutinesTest = "1.7.3"
 mockitoKotlin = "4.1.0"
+ui = "1.10.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -66,6 +67,7 @@ room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVers
 androidx-mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockitoInline" }
 androidx-mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+ui = { group = "androidx.compose.ui", name = "ui", version.ref = "ui" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
